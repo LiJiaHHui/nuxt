@@ -1,5 +1,6 @@
  module.exports = {
     router: {
+        linkActiveClass: 'active',
          // 自定义路由表规则
         extendRoutes(routes, resolve) {
             // 清楚nuxt.js基于pages目录默认生成的路由表
@@ -19,9 +20,29 @@
                     component: resolve(__dirname, 'pages/login/')
                 },
                 {
-                    path: '/regiest',
-                    name: 'regiest',
+                    path: '/register',
+                    name: 'register',
                     component: resolve(__dirname, 'pages/login/')
+                },
+                {
+                    path: '/profile/:username',
+                    name: 'profile',
+                    component: resolve(__dirname, 'pages/profile/')
+                },
+                {
+                    path: '/settings',
+                    name: 'settings',
+                    component: resolve(__dirname, 'pages/settings/')
+                },
+                {
+                    path: '/editor',
+                    name: 'editor',
+                    component: resolve(__dirname, 'pages/editor/')
+                },
+                {
+                    path: '/article/:slug',
+                    name: 'article',
+                    component: resolve(__dirname, 'pages/article/')
                 }
             ]
         }])

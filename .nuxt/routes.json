@@ -16,10 +16,34 @@
         "_name": "_31f8419a"
       },
       {
-        "path": "/regiest",
-        "name": "regiest",
+        "path": "/register",
+        "name": "register",
         "component": "D:\\\\workSpace\\\\realworld-nuxtjs\\\\pages\\\\login",
         "_name": "_31f8419a"
+      },
+      {
+        "path": "/profile/:username",
+        "name": "profile",
+        "component": "D:\\\\workSpace\\\\realworld-nuxtjs\\\\pages\\\\profile",
+        "_name": "_0eafaef3"
+      },
+      {
+        "path": "/settings",
+        "name": "settings",
+        "component": "D:\\\\workSpace\\\\realworld-nuxtjs\\\\pages\\\\settings",
+        "_name": "_58864019"
+      },
+      {
+        "path": "/editor",
+        "name": "editor",
+        "component": "D:\\\\workSpace\\\\realworld-nuxtjs\\\\pages\\\\editor",
+        "_name": "_2627aa3a"
+      },
+      {
+        "path": "/article/:slug",
+        "name": "article",
+        "component": "D:\\\\workSpace\\\\realworld-nuxtjs\\\\pages\\\\article",
+        "_name": "_150c1b80"
       }
     ],
     "_name": "_0e89f6c0"
