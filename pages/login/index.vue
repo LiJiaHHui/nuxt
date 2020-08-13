@@ -11,18 +11,27 @@
         </p>
 
         <ul class="error-messages">
-          <li>That email is already taken</li>
+          
+          <template v-for="(messages,field) in errors">
+            <li v-for="(message,index) in messages" :key="index">
+              {{field}}{{message}}
+            </li>
+          </template>
         </ul>
 
         <form @submit.prevent="onSubmit">
           <fieldset class="form-group" v-if="!isLogin">
-            <input class="form-control form-control-lg" type="text" placeholder="Your Name">
+            <input class="form-control form-control-lg" 
+            v-model="user.username"
+            type="text" placeholder="Your Name">
           </fieldset>
           <fieldset class="form-group">
-            <input class="form-control form-control-lg" v-model="user.email" type="text" placeholder="Email">
+            <input class="form-control form-control-lg" 
+            v-model="user.email" type="text" placeholder="Email">
           </fieldset>
           <fieldset class="form-group">
-            <input class="form-control form-control-lg" v-model="user.password" type="password" placeholder="Password">
+            <input class="form-control form-control-lg" 
+            v-model="user.password" type="password" placeholder="Password">
           </fieldset>
           <button class="btn btn-lg btn-primary pull-xs-right">
             {{ isLogin ? 'Sign in': 'Sign up'}}
@@ -35,7 +44,7 @@
 </div>
 </template>
 <script>
-import {login} from '@/api/user'
+import {login,register} from '@/api/user'
 export default {
     name:'LoginIndex',
     computed: {
@@ -46,22 +55,30 @@ export default {
     data () {
       return{
         user:{
+          username:'',
           email: '',
           password: ''
-        }
+        },
+        errors:{}
       }
     },
     methods: {
         // 提交表单登录
         async onSubmit () {
-          try{const {data} = await login({
-            user: this.user
-          })
-        console.log(data)
-        // 跳转到首页
-        this.$route.push('/')
+          try{
+            const {data} = this.isLogin ?
+              await login({
+                user: this.user
+            })
+            : await register({
+                user: this.user
+           })
+           console.log(data)
+            // 跳转到首页
+           this.$router.push('/')
         }catch (err) {
-          console.log ('请求失败')
+          // console.log ('请求失败',err)
+          this.errors=err.response.data.errors
         }
       }
     }
